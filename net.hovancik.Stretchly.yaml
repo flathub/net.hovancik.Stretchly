@@ -38,12 +38,14 @@ modules:
         dest-filename: run.sh
         commands:
           - export TMPDIR=$XDG_CACHE_HOME
-          - if test -n "$WAYLAND_DISPLAY" && test -e "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"; then set -- --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"; fi
+          - if test -n "$WAYLAND_DISPLAY" && test -e "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY";
+            then set -- --enable-features=UseOzonePlatform --ozone-platform=wayland
+            "$@"; fi
           - zypak-wrapper.sh /app/main/stretchly "$@"
       - type: git
         url: https://github.com/hovancik/stretchly.git
-        tag: v1.12.0
-        commit: b6e8f87ee05c2dc07128bdf493c7c2af5c4096ec
+        tag: v1.13.0
+        commit: e7d086015440c8e91a90e0cae5ed34dc88ec7743
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hovancik/stretchly/releases/latest
