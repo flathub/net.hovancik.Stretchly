@@ -23,10 +23,7 @@ finish-args:
   # DBus permissions required for app indicator support.
   # This wildcard permission is necessary for electron to create its own uniquely numbered org.kde.StatusNotifierItem name.
   - --own-name=org.kde.*
-  - --talk-name=org.kde.StatusNotifierItem
   - --talk-name=org.kde.StatusNotifierWatcher
-  - --talk-name=org.freedesktop.StatusNotifierItem
-  - --talk-name=org.freedesktop.StatusNotifierWatcher
 modules:
   - shared-modules/dbus-glib/dbus-glib.json
   - name: stretchly
