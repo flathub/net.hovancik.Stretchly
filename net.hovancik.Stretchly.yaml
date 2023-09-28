@@ -19,10 +19,7 @@ finish-args:
   - --socket=pulseaudio
   - --share=network
   - --talk-name=org.freedesktop.Notifications
-
-  # DBus permissions required for app indicator support.
-  # This wildcard permission is necessary for electron to create its own uniquely numbered org.kde.StatusNotifierItem name.
-  - --own-name=org.kde.*
+  # Tray on KDE
   - --talk-name=org.kde.StatusNotifierWatcher
 modules:
   - shared-modules/dbus-glib/dbus-glib.json
