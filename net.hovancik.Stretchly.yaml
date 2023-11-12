@@ -64,6 +64,7 @@ modules:
         npm run pack -- $ELECTRON_BUILDER_ARCH_ARGS --linux
       - cp -a dist/linux*unpacked /app/main
       - install -Dm 755 -t /app/bin/ run.sh
+      - setup-separate-locales $FLATPAK_DEST/stretchly
       - install -Dm 644 net.hovancik.Stretchly.desktop /app/share/applications/$FLATPAK_ID.desktop
       - sed -i 's/Icon=net.hovancik.Stretchly/Icon=net.hovancik.Stretchly/' /app/share/applications/$FLATPAK_ID.desktop
       - install -Dm 644 net.hovancik.Stretchly.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
