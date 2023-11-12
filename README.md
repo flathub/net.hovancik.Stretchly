@@ -42,7 +42,7 @@ Install yq.
 
 Install the Flatpak Node Generator Python utility with `pipx`.
 
-    pipx install flatpak-builder-tools/node
+    pip install flatpak-builder-tools/node
 
 Ensure the Flatpak Node Generator and yq are in your `PATH`.
 
