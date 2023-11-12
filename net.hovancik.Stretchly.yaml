@@ -5,7 +5,7 @@ sdk: org.freedesktop.Sdk
 base: org.electronjs.Electron2.BaseApp
 base-version: '23.08'
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node16
+  - org.freedesktop.Sdk.Extension.node18
 command: run.sh
 separate-locales: false
 finish-args:
@@ -26,12 +26,13 @@ modules:
   - name: stretchly
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node16/bin
+      append-path: /usr/lib/sdk/node18/bin
       env:
         XDG_CACHE_HOME: /run/build/stretchly/flatpak-node/cache
         NPM_CONFIG_LOGLEVEL: info
         npm_config_cache: /run/build/stretchly/flatpak-node/npm-cache
         npm_config_offline: 'true'
+        npm_config_nodedir: /usr/lib/sdk/node18
     sources:
       - generated-sources.json
       - type: script
