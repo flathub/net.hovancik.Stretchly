@@ -1,9 +1,9 @@
 app-id: net.hovancik.Stretchly
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: "23.08"
 sdk: org.freedesktop.Sdk
 base: org.electronjs.Electron2.BaseApp
-base-version: '23.08'
+base-version: "23.08"
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node18
 command: run.sh
@@ -31,7 +31,7 @@ modules:
         XDG_CACHE_HOME: /run/build/stretchly/flatpak-node/cache
         NPM_CONFIG_LOGLEVEL: info
         npm_config_cache: /run/build/stretchly/flatpak-node/npm-cache
-        npm_config_offline: 'true'
+        npm_config_offline: "true"
         npm_config_nodedir: /usr/lib/sdk/node18
     sources:
       - generated-sources.json
