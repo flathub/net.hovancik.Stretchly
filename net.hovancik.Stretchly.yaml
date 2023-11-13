@@ -34,15 +34,6 @@ modules:
         npm_config_offline: "true"
         npm_config_nodedir: /usr/lib/sdk/node18
     sources:
-      - generated-sources.json
-      - type: script
-        dest-filename: run.sh
-        commands:
-          - export TMPDIR=$XDG_CACHE_HOME
-          - if test -n "$WAYLAND_DISPLAY" && test -e "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY";
-            then set -- --enable-features=UseOzonePlatform --ozone-platform=wayland
-            "$@"; fi
-          - zypak-wrapper.sh /app/main/stretchly "$@"
       - type: git
         url: https://github.com/hovancik/stretchly.git
         tag: v1.15.0
@@ -53,6 +44,15 @@ modules:
           tag-query: .tag_name
           version-query: .tag_name | sub("^v"; "")
           timestamp-query: .published_at
+      - generated-sources.json
+      - type: script
+        dest-filename: run.sh
+        commands:
+          - export TMPDIR=$XDG_CACHE_HOME
+          - if test -n "$WAYLAND_DISPLAY" && test -e "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY";
+            then set -- --enable-features=UseOzonePlatform --ozone-platform=wayland
+            "$@"; fi
+          - zypak-wrapper.sh /app/main/stretchly "$@"
 
     build-commands:
       - |
