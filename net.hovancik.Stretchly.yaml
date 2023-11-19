@@ -44,8 +44,8 @@ modules:
           - zypak-wrapper.sh /app/main/stretchly "$@"
       - type: git
         url: https://github.com/hovancik/stretchly.git
-        tag: v1.14.1
-        commit: dff2e6b4bba2f43a6b05a58ad0580252db0110cc
+        tag: v1.15.1
+        commit: 6e0b3273242e6b7255371316320ce71848743100
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hovancik/stretchly/releases/latest
