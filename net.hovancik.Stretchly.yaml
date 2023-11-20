@@ -36,8 +36,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/hovancik/stretchly.git
-        tag: v1.15.0
-        commit: 2e161f982ffe2f80d6c9ce310b7a89e276a240b0
+        tag: v1.15.1
+        commit: 6e0b3273242e6b7255371316320ce71848743100
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hovancik/stretchly/releases/latest
@@ -64,7 +64,6 @@ modules:
         npm run pack -- $ELECTRON_BUILDER_ARCH_ARGS --linux
       - cp -a dist/linux*unpacked /app/main
       - install -Dm 755 -t /app/bin/ run.sh
-      - setup-separate-locales $FLATPAK_DEST/stretchly
       - install -Dm 644 net.hovancik.Stretchly.desktop /app/share/applications/$FLATPAK_ID.desktop
       - sed -i 's/Icon=net.hovancik.Stretchly/Icon=net.hovancik.Stretchly/' /app/share/applications/$FLATPAK_ID.desktop
       - install -Dm 644 net.hovancik.Stretchly.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
