@@ -17,6 +17,9 @@ finish-args:
   # - --socket=fallback-x11
   # - --socket=wayland
   - --socket=pulseaudio
+  # Access DBus for idle status
+  - --system-talk-name=org.freedesktop.Notifications
+  - --system-talk-name=org.xfce.Xfconf
   - --share=network
   - --talk-name=org.freedesktop.Notifications
   # Tray on KDE
