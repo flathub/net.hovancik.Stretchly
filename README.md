@@ -32,7 +32,11 @@ Ideally, these dependencies will be updated whenever the `package-lock.json` fil
 The Flatpak Node Generator is used to generate this list of packages from the `package-lock.json` file, which is included directly in the Flatpak manifest.
 To generate an updated version of this file, `generated-sources.json`, follow the instructions here.
 
+In the Flatpak manifest, be sure to update the node runtime to match the major version that is used by Stretchly.
+This can be found in the `package.json` file for Stretchly.
+
 Make sure to install npm.
+You'll want to use the same version of nodejs as the node runtime for the Flatpak.
 
     sudo apt install jq npm pipx python3-aiohttp
 
