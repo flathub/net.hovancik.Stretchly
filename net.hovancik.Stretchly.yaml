@@ -36,8 +36,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/hovancik/stretchly.git
-        tag: v1.17.0
-        commit: 6dd2bc35026eb91e305c2dd7cc8a35dde74d41f4
+        tag: v1.17.1
+        commit: 8144590213eb494f8e13553b88854abe9cbbaa22
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hovancik/stretchly/releases/latest
