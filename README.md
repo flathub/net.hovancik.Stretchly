@@ -45,6 +45,7 @@ Install yq.
     pipx install yq
 
 Install the Flatpak Node Generator Python utility with `pipx`.
+Due to there being a package using a Git source, the version of Flatpak Node Generator from https://github.com/flatpak/flatpak-builder-tools/pull/382[this PR] is necessary.
 
     pip install flatpak-builder-tools/node
 
@@ -62,4 +63,4 @@ Checkout the appropriate tag.
 
 Run the script against the `package-lock.json` file as shown here.
 
-    flatpak-node-generator npm stretchly/package-lock.json --electron-node-headers
+    flatpak-node-generator npm stretchly/package-lock.json --electron-node-headers --package-lock-only
