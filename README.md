@@ -45,6 +45,7 @@ Install yq.
     pipx install yq
 
 Install the Flatpak Node Generator Python utility with `pipx`.
+Due to there being a package using a Git source, the version of Flatpak Node Generator from https://github.com/flatpak/flatpak-builder-tools/pull/382[this PR] is necessary.
 
     pip install flatpak-builder-tools/node
 

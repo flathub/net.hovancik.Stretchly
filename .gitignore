@@ -2,4 +2,6 @@
 .flatpak-builder/
 *build*/
 *repo*/
+env*/
 stretchly/
+venv*/
