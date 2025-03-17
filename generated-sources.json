@@ -10658,7 +10658,7 @@
     {
         "type": "script",
         "commands": [
-            "jq --arg buildroot \"$FLATPAK_BUILDER_BUILDDIR\" --argjson data '{\"github:hovancik/windows-quiet-hours#5bca68009182573f0c28eafa6a07f40d8dbae624\": \"flatpak-node/git-packages/windows-quiet-hours-5bca68009182573f0c28eafa6a07f40d8dbae624#5bca68009182573f0c28eafa6a07f40d8dbae624\", \"github:hovancik/windows-quiet-hours\": \"flatpak-node/git-packages/windows-quiet-hours-5bca68009182573f0c28eafa6a07f40d8dbae624#5bca68009182573f0c28eafa6a07f40d8dbae624\", \"git+ssh://git@github.com:hovancik/windows-quiet-hours.git#5bca68009182573f0c28eafa6a07f40d8dbae624\": \"flatpak-node/git-packages/windows-quiet-hours-5bca68009182573f0c28eafa6a07f40d8dbae624#5bca68009182573f0c28eafa6a07f40d8dbae624\", \"git+ssh://git@github.com:hovancik/windows-quiet-hours.git\": \"flatpak-node/git-packages/windows-quiet-hours-5bca68009182573f0c28eafa6a07f40d8dbae624#5bca68009182573f0c28eafa6a07f40d8dbae624\", \"github:Jelmerro/dbus-final#3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba\": \"flatpak-node/git-packages/dbus-final-3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba#3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba\", \"github:Jelmerro/dbus-final\": \"flatpak-node/git-packages/dbus-final-3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba#3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba\", \"git+ssh://git@github.com:Jelmerro/dbus-final.git#3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba\": \"flatpak-node/git-packages/dbus-final-3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba#3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba\", \"git+ssh://git@github.com:Jelmerro/dbus-final.git\": \"flatpak-node/git-packages/dbus-final-3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba#3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba\"}' 'walk(    if type == \"object\"    then        to_entries | map(            if (.value | type == \"string\") and $data[.value]            then .value = \"git+file://\\($buildroot)/\\($data[.value])\"            else .            end        ) | from_entries    else .    end)' $FLATPAK_BUILDER_BUILDDIR/package.json > $FLATPAK_BUILDER_BUILDDIR/package.json.new",
+            "jq --arg buildroot \"$FLATPAK_BUILDER_BUILDDIR\" --argjson data '{\"windows-quiet-hours\": \"flatpak-node/git-packages/windows-quiet-hours-5bca68009182573f0c28eafa6a07f40d8dbae624#5bca68009182573f0c28eafa6a07f40d8dbae624\", \"dbus-final\": \"flatpak-node/git-packages/dbus-final-3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba#3e43f60d80bbcdf0dfa0b59b838097d6af4d17ba\"}' 'walk(    if type == \"object\"    then        to_entries | map(            if (.key | type == \"string\") and $data[.key]            then .value = \"git+file://\\($buildroot)/\\($data[.key])\"            else .            end        ) | from_entries    else .    end)' $FLATPAK_BUILDER_BUILDDIR/package.json > $FLATPAK_BUILDER_BUILDDIR/package.json.new",
             "mv $FLATPAK_BUILDER_BUILDDIR/package.json{.new,}"
         ],
         "dest-filename": "patch.sh",
@@ -10681,6 +10681,47 @@
         "commands": [
             "FLATPAK_BUILDER_BUILDDIR=$PWD flatpak-node/patch-all.sh",
             "bash flatpak-node/setup_sdk_node_headers.sh"
+        ]
+    },
+    {
+        "type": "shell",
+        "commands": [
+            "mkdir -p \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515\"",
+            "ln -s \"../SHASUMS256.txt-33.2.1\" \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515/SHASUMS256.txt\""
+        ],
+        "dest": "flatpak-node/cache/electron"
+    },
+    {
+        "type": "shell",
+        "commands": [
+            "mkdir -p \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515\"",
+            "ln -s \"../electron-v33.2.1-linux-arm64.zip\" \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515/electron-v33.2.1-linux-arm64.zip\""
+        ],
+        "dest": "flatpak-node/cache/electron",
+        "only-arches": [
+            "aarch64"
+        ]
+    },
+    {
+        "type": "shell",
+        "commands": [
+            "mkdir -p \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515\"",
+            "ln -s \"../electron-v33.2.1-linux-armv7l.zip\" \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515/electron-v33.2.1-linux-armv7l.zip\""
+        ],
+        "dest": "flatpak-node/cache/electron",
+        "only-arches": [
+            "arm"
+        ]
+    },
+    {
+        "type": "shell",
+        "commands": [
+            "mkdir -p \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515\"",
+            "ln -s \"../electron-v33.2.1-linux-x64.zip\" \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515/electron-v33.2.1-linux-x64.zip\""
+        ],
+        "dest": "flatpak-node/cache/electron",
+        "only-arches": [
+            "x86_64"
         ]
     },
     {
@@ -10734,8 +10775,14 @@
     {
         "type": "shell",
         "commands": [
-            "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-arm64.zip\"",
-            "ln -s \"../chromedriver-v17.0.0-linux-arm64.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-arm64.zip/chromedriver-v17.0.0-linux-arm64.zip\"",
+            "mkdir -p \"dbd8fc4d3473df2ea591cc63bf1d944b47138489e384122e9dffcb2fe4046a38\"",
+            "ln -s \"../SHASUMS256.txt-17.0.0\" \"dbd8fc4d3473df2ea591cc63bf1d944b47138489e384122e9dffcb2fe4046a38/SHASUMS256.txt\""
+        ],
+        "dest": "flatpak-node/cache/electron"
+    },
+    {
+        "type": "shell",
+        "commands": [
             "mkdir -p \"dbd8fc4d3473df2ea591cc63bf1d944b47138489e384122e9dffcb2fe4046a38\"",
             "ln -s \"../chromedriver-v17.0.0-linux-arm64.zip\" \"dbd8fc4d3473df2ea591cc63bf1d944b47138489e384122e9dffcb2fe4046a38/chromedriver-v17.0.0-linux-arm64.zip\""
         ],
@@ -10747,8 +10794,6 @@
     {
         "type": "shell",
         "commands": [
-            "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-armv7l.zip\"",
-            "ln -s \"../chromedriver-v17.0.0-linux-armv7l.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-armv7l.zip/chromedriver-v17.0.0-linux-armv7l.zip\"",
             "mkdir -p \"dbd8fc4d3473df2ea591cc63bf1d944b47138489e384122e9dffcb2fe4046a38\"",
             "ln -s \"../chromedriver-v17.0.0-linux-armv7l.zip\" \"dbd8fc4d3473df2ea591cc63bf1d944b47138489e384122e9dffcb2fe4046a38/chromedriver-v17.0.0-linux-armv7l.zip\""
         ],
@@ -10760,8 +10805,6 @@
     {
         "type": "shell",
         "commands": [
-            "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-ia32.zip\"",
-            "ln -s \"../chromedriver-v17.0.0-linux-ia32.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-ia32.zip/chromedriver-v17.0.0-linux-ia32.zip\"",
             "mkdir -p \"dbd8fc4d3473df2ea591cc63bf1d944b47138489e384122e9dffcb2fe4046a38\"",
             "ln -s \"../chromedriver-v17.0.0-linux-ia32.zip\" \"dbd8fc4d3473df2ea591cc63bf1d944b47138489e384122e9dffcb2fe4046a38/chromedriver-v17.0.0-linux-ia32.zip\""
         ],
@@ -10773,8 +10816,6 @@
     {
         "type": "shell",
         "commands": [
-            "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-x64.zip\"",
-            "ln -s \"../chromedriver-v17.0.0-linux-x64.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-x64.zip/chromedriver-v17.0.0-linux-x64.zip\"",
             "mkdir -p \"dbd8fc4d3473df2ea591cc63bf1d944b47138489e384122e9dffcb2fe4046a38\"",
             "ln -s \"../chromedriver-v17.0.0-linux-x64.zip\" \"dbd8fc4d3473df2ea591cc63bf1d944b47138489e384122e9dffcb2fe4046a38/chromedriver-v17.0.0-linux-x64.zip\""
         ],
@@ -10786,10 +10827,52 @@
     {
         "type": "shell",
         "commands": [
+            "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-arm64.zip\"",
+            "ln -s \"../chromedriver-v17.0.0-linux-arm64.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-arm64.zip/chromedriver-v17.0.0-linux-arm64.zip\""
+        ],
+        "dest": "flatpak-node/cache/electron",
+        "only-arches": [
+            "aarch64"
+        ]
+    },
+    {
+        "type": "shell",
+        "commands": [
+            "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-armv7l.zip\"",
+            "ln -s \"../chromedriver-v17.0.0-linux-armv7l.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-armv7l.zip/chromedriver-v17.0.0-linux-armv7l.zip\""
+        ],
+        "dest": "flatpak-node/cache/electron",
+        "only-arches": [
+            "arm"
+        ]
+    },
+    {
+        "type": "shell",
+        "commands": [
+            "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-ia32.zip\"",
+            "ln -s \"../chromedriver-v17.0.0-linux-ia32.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-ia32.zip/chromedriver-v17.0.0-linux-ia32.zip\""
+        ],
+        "dest": "flatpak-node/cache/electron",
+        "only-arches": [
+            "i386"
+        ]
+    },
+    {
+        "type": "shell",
+        "commands": [
+            "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-x64.zip\"",
+            "ln -s \"../chromedriver-v17.0.0-linux-x64.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv17.0.0chromedriver-v17.0.0-linux-x64.zip/chromedriver-v17.0.0-linux-x64.zip\""
+        ],
+        "dest": "flatpak-node/cache/electron",
+        "only-arches": [
+            "x86_64"
+        ]
+    },
+    {
+        "type": "shell",
+        "commands": [
             "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv33.2.1electron-v33.2.1-linux-arm64.zip\"",
-            "ln -s \"../electron-v33.2.1-linux-arm64.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv33.2.1electron-v33.2.1-linux-arm64.zip/electron-v33.2.1-linux-arm64.zip\"",
-            "mkdir -p \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515\"",
-            "ln -s \"../electron-v33.2.1-linux-arm64.zip\" \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515/electron-v33.2.1-linux-arm64.zip\""
+            "ln -s \"../electron-v33.2.1-linux-arm64.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv33.2.1electron-v33.2.1-linux-arm64.zip/electron-v33.2.1-linux-arm64.zip\""
         ],
         "dest": "flatpak-node/cache/electron",
         "only-arches": [
@@ -10800,9 +10883,7 @@
         "type": "shell",
         "commands": [
             "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv33.2.1electron-v33.2.1-linux-armv7l.zip\"",
-            "ln -s \"../electron-v33.2.1-linux-armv7l.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv33.2.1electron-v33.2.1-linux-armv7l.zip/electron-v33.2.1-linux-armv7l.zip\"",
-            "mkdir -p \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515\"",
-            "ln -s \"../electron-v33.2.1-linux-armv7l.zip\" \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515/electron-v33.2.1-linux-armv7l.zip\""
+            "ln -s \"../electron-v33.2.1-linux-armv7l.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv33.2.1electron-v33.2.1-linux-armv7l.zip/electron-v33.2.1-linux-armv7l.zip\""
         ],
         "dest": "flatpak-node/cache/electron",
         "only-arches": [
@@ -10813,9 +10894,7 @@
         "type": "shell",
         "commands": [
             "mkdir -p \"httpsgithub.comelectronelectronreleasesdownloadv33.2.1electron-v33.2.1-linux-x64.zip\"",
-            "ln -s \"../electron-v33.2.1-linux-x64.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv33.2.1electron-v33.2.1-linux-x64.zip/electron-v33.2.1-linux-x64.zip\"",
-            "mkdir -p \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515\"",
-            "ln -s \"../electron-v33.2.1-linux-x64.zip\" \"60b62c26a87223a26b919ccbdd07cf1a183db20ae9d2d4d57db8080f0a010515/electron-v33.2.1-linux-x64.zip\""
+            "ln -s \"../electron-v33.2.1-linux-x64.zip\" \"httpsgithub.comelectronelectronreleasesdownloadv33.2.1electron-v33.2.1-linux-x64.zip/electron-v33.2.1-linux-x64.zip\""
         ],
         "dest": "flatpak-node/cache/electron",
         "only-arches": [
