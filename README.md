@@ -63,3 +63,13 @@ Checkout the appropriate tag.
 Run the script against the `package-lock.json` file as shown here.
 
     flatpak-node-generator npm stretchly/package-lock.json --electron-node-headers
+
+## Build With a Local Stretchly Repo
+If you've made local changes to stretchly, you can build from those instead of git.  
+Change the source from git to
+```
+- type: dir
+        path: /path/to/stretchly
+```
+
+If you have issues with `asar: file size cannot be larger than 4.2GB` after rebuilding a few times, you can delete the `.flatpak-builder` and `build-dir` directories
