@@ -5,7 +5,7 @@ sdk: org.freedesktop.Sdk
 base: org.electronjs.Electron2.BaseApp
 base-version: '24.08'
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node20
+  - org.freedesktop.Sdk.Extension.node22
 command: run.sh
 separate-locales: false
 x-flathub:
@@ -18,7 +18,7 @@ finish-args:
   - --share=ipc
   - --socket=pulseaudio
   - --socket=x11
-  # todo While Stretchly can be run under Wayland, it doesn't work right with multiple screens.
+  # todo While Stretchly can be run under Wayland, it doesn't work right with multiple monitors.
   # - --socket=fallback-x11
   # - --socket=wayland
   - --share=network
@@ -32,18 +32,18 @@ modules:
   - name: stretchly
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node20/bin
+      append-path: /usr/lib/sdk/node22/bin
       env:
         XDG_CACHE_HOME: /run/build/stretchly/flatpak-node/cache
         NPM_CONFIG_LOGLEVEL: info
         npm_config_cache: /run/build/stretchly/flatpak-node/npm-cache
         npm_config_offline: 'true'
-        npm_config_nodedir: /usr/lib/sdk/node20
+        npm_config_nodedir: /usr/lib/sdk/node22
     sources:
       - type: git
         url: https://github.com/hovancik/stretchly.git
-        tag: v1.17.2
-        commit: 08ca4062e8e8b5f32018054a481630380d7c1749
+        tag: v1.18.1
+        commit: 64f67b38c855bd7a2c6a92d9e6aec243a238a064
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hovancik/stretchly/releases/latest
