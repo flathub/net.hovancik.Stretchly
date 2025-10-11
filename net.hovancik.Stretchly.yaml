@@ -8,6 +8,10 @@ sdk-extensions:
   - org.freedesktop.Sdk.Extension.node20
 command: run.sh
 separate-locales: false
+x-flathub:
+  linter-exceptions:
+    # App checks this directory to see if autostart is enabled
+    - finish-args-unnecessary-xdg-config-autostart-ro-access
 finish-args:
   - --device=dri
   - --env=GIO_EXTRA_MODULES=/app/lib/gio/modules/
@@ -21,6 +25,8 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
   # Tray on KDE
   - --talk-name=org.kde.StatusNotifierWatcher
+  # Read only access to autostart directory, to check autostart status
+  - --filesystem=xdg-config/autostart:ro
 modules:
   - shared-modules/dbus-glib/dbus-glib.json
   - name: stretchly
