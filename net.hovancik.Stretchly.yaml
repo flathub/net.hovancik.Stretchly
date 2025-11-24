@@ -51,18 +51,7 @@ modules:
           - export TMPDIR=$XDG_CACHE_HOME
           - export ZYPAK_SPAWN_LATEST_ON_REEXEC=0
           - export CHROME_WRAPPER=/app/bin/run.sh
-          - |
-            FLAGS="$FLAGS --enable-features=UseOzonePlatform"
-            if [ -n "${WAYLAND_DISPLAY+set}" ] && [ -e "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" ]; then
-              echo "Wayland detected. Enabling Wayland support."
-              FLAGS="$FLAGS --ozone-platform=wayland"
-            else
-              echo "Wayland not detected. Enabling X11 support."
-              FLAGS="$FLAGS --ozone-platform=x11"
-            fi
-            echo "Stretchly flags: $FLAGS"
-            zypak-wrapper /app/main/stretchly $FLAGS "$@"
-
+          - zypak-wrapper /app/main/stretchly --ozone-platform=x11 "$@"
     build-commands:
       - |
         ln -s $XDG_CACHE_HOME/node-gyp $HOME/.electron-gyp
