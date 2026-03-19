@@ -11,6 +11,7 @@ separate-locales: false
 finish-args:
   - --device=dri
   - --env=GIO_EXTRA_MODULES=/app/lib/gio/modules/
+  - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --share=ipc
   - --socket=pulseaudio
   - --socket=x11
@@ -62,8 +63,8 @@ modules:
             fi
             echo "Stretchly flags: $FLAGS"
             zypak-wrapper /app/main/stretchly $FLAGS "$@"
-
     build-commands:
+      - jq '.build.linux.target="dir"' <<<$(<package.json) > package.json
       - |
         ln -s $XDG_CACHE_HOME/node-gyp $HOME/.electron-gyp
         npm install --offline
