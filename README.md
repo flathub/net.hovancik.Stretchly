@@ -21,6 +21,10 @@ Build the Flatpak.
 
     flatpak-builder --user --install --install-deps-from=flathub --force-clean --repo=repo build-dir net.hovancik.Stretchly.yaml
 
+If there is an error regarding `rofiles-fuse`, then provide the `--disable-rofiles-fuse` to the Flatpak Builder command like so.
+
+    flatpak-builder --user --install --install-deps-from=flathub --force-clean --repo=repo --disable-rofiles-fuse build-dir net.hovancik.Stretchly.yaml
+
 Run the Flatpak.
 
     flatpak run net.hovancik.Stretchly
@@ -56,13 +60,17 @@ Fetch the Stretchly source code.
 
     git clone https://github.com/hovancik/stretchly.git
 
+Fetch tags for the Stretchly repo.
+
+    git -C stretchly fetch --tags
+
 Checkout the appropriate tag.
 
     git -C stretchly switch -d $(yq -r '.modules[1].sources[0].commit' net.hovancik.Stretchly.yaml)
 
 Run the script against the `package-lock.json` file as shown here.
 
-    flatpak-node-generator npm stretchly/package-lock.json --electron-node-headers
+    flatpak-node-generator npm stretchly/package-lock.json --electron-node-headers  --node-sdk-extension org.freedesktop.Sdk.Extension.node22//26.08
 
 ## Build With a Local Stretchly Repo
 
