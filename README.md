@@ -21,6 +21,11 @@ Build the Flatpak.
 
     flatpak-builder --user --install --install-deps-from=flathub --force-clean --repo=repo build-dir net.hovancik.Stretchly.yaml
 
+If there is an error regarding `rofiles-fuse`, then provide the `--disable-rofiles-fuse` to the Flatpak Builder command like so.
+
+    flatpak-builder --user --install --install-deps-from=flathub --force-clean --repo=repo --disable-rofiles-fuse build-dir net.hovancik.Stretchly.yaml
+
+
 Run the Flatpak.
 
     flatpak run net.hovancik.Stretchly
@@ -55,6 +60,10 @@ Ensure the Flatpak Node Generator and yq are in your `PATH`.
 Fetch the Stretchly source code.
 
     git clone https://github.com/hovancik/stretchly.git
+
+Fetch tags for the Stretchly repo.
+
+    get -C stretchly fetch --tags
 
 Checkout the appropriate tag.
 

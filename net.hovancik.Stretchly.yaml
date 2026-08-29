@@ -1,9 +1,9 @@
 app-id: net.hovancik.Stretchly
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 base: org.electronjs.Electron2.BaseApp
-base-version: '24.08'
+base-version: '25.08'
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node22
 command: run.sh
@@ -11,6 +11,7 @@ separate-locales: false
 finish-args:
   - --device=dri
   - --env=GIO_EXTRA_MODULES=/app/lib/gio/modules/
+  - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --share=ipc
   - --socket=pulseaudio
   - --socket=x11
@@ -23,6 +24,8 @@ finish-args:
   - --talk-name=org.kde.StatusNotifierWatcher
 modules:
   - shared-modules/dbus-glib/dbus-glib.json
+  - libevdev.yaml
+  - libinput.yaml
   - name: stretchly
     buildsystem: simple
     build-options:
@@ -36,8 +39,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/hovancik/stretchly.git
-        tag: v1.19.0
-        commit: edd21c4d7ae11eec430695304d69fd7d4de234cf
+        tag: v1.22.1
+        commit: d150ac4c97da1ce20f4858389fc6790db52a6402
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hovancik/stretchly/releases/latest
@@ -62,8 +65,8 @@ modules:
             fi
             echo "Stretchly flags: $FLAGS"
             zypak-wrapper /app/main/stretchly $FLAGS "$@"
-
     build-commands:
+      - jq '.build.linux.target="dir"' <<<$(<package.json) > package.json
       - |
         ln -s $XDG_CACHE_HOME/node-gyp $HOME/.electron-gyp
         npm install --offline
